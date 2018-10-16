@@ -26,6 +26,7 @@
                 >
                   <v-list-tile-content>
                     <v-list-tile-title v-text="task.title"></v-list-tile-title>
+                    <v-list-tile-sub-title>{{ task.progress }}/{{ task.amount }}</v-list-tile-sub-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list>
