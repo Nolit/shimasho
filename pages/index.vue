@@ -60,6 +60,9 @@ export default {
   },
   methods: {
     submit: async function () {
+      this.signin(this.form.email, this.form.password)
+    },
+    signin: async function (email, password) {
       let response = await client.post('/login', this.form, {
           transformRequest: [function(data) {
             const formData = new FormData();
@@ -73,19 +76,24 @@ export default {
         return;
       }
       if (! response.data.isLogin) {
-        if (confirm('ユーザ情報が存在しません。新規登録していいですか？')) {
-          const formData = new FormData();
-          formData.append('email', this.form.email);
-          formData.append('password', this.form.password);
-          client.post('/users', formData)
-          .then(response => {
-              if (response.data.isSuccess) {
-                alert('success Singup')
-                this.paginateMyAccount()
-              }
-          })
-        }
+        if (confirm('ユーザ情報が存在しません。新規登録しますか？')) {
+          this.signup(email, password)
+        }    
       }
+    },
+    signup: async function (email, password) {
+      const formData = new FormData();
+      formData.append('email', this.form.email);
+      formData.append('password', this.form.password);
+      client.post('/users', formData)
+      .then(response => {
+          if (response.data) {
+            alert('success Singup')
+            this.signin(email, password)
+            return;
+          }
+          alert('failed Signup')
+      })
     },
     paginateTaskList: function () {
       location.href = "/tasks"
