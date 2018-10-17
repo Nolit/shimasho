@@ -20,9 +20,9 @@
               </v-toolbar>
               <v-list>
                 <v-list-tile
-                  v-for="task in tasks"
+                  v-for="(task, key) in tasks"
                   :key="task.id"
-                  @click="select(task.id)"
+                  @click="select(key)"
                 >
                   <v-list-tile-content>
                     <v-list-tile-title v-text="task.title"></v-list-tile-title>
@@ -93,6 +93,34 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <v-dialog v-model="progressDialog" max-width="500px">
+        <v-card v-if="progressDialog">
+          <v-card-title>
+            <span class="headline">{{ tasks[editTaskKey].title}}</span>
+            【{{ tasks[editTaskKey].progress}} / {{ tasks[editTaskKey].amount}}】
+          </v-card-title>
+          <v-card-text>
+            <v-text-field
+              label="進捗数"
+              type="number"
+              v-model.number="addProgressCount"
+            ></v-text-field>
+            <div style="text-align: right">
+            <v-btn
+              dark
+              fab
+              top
+              right
+              style="background-color: #b5474c"
+              @click="progress()"
+            >
+                進捗！
+            </v-btn>
+            </div>
+          </v-card-text>
+
+        </v-card>
+      </v-dialog>
   </v-app>
 </template>
 
@@ -114,7 +142,11 @@ export default {
       creationDialog: false,
       creation: null,
       creationDueDateFormatted: null,
-      dueDateDialog: false
+      dueDateDialog: false,
+      progressDialog: false,
+      editTaskKey: null,
+      addProgressCount: 0
+      
     }
   },
   created: function () {
@@ -154,8 +186,15 @@ export default {
       this.fetchData()
       
     },
-    select: function (id) {
-      alert("select: " + id)
+    select: function (key) {
+      this.editTaskKey = key
+    },
+    progress: async function () {
+      const id = this.tasks[this.editTaskKey].id
+      const addCount = this.addProgressCount
+      await client.patch(`/tasks/${id}/progress/${addCount}`)
+      this.progressDialog = false
+      this.fetchData()
     },
     nextDate:function () {
       this.date = moment(this.date).add(1, 'days')
@@ -187,6 +226,17 @@ export default {
     },
     'creation.dueDate': function(val){
       this.creationDueDateFormatted = this.formatDate(val)
+    },
+    progressDialog: function (isOpen) {
+      if (! isOpen) {
+        this.editTaskKey = null
+        this.addProgressCount = 0
+      }
+    },
+    editTaskKey: function (key) {
+      if (key !== null) {
+        this.progressDialog = true
+      }
     }
   }
 }
