@@ -28,6 +28,9 @@
                     <v-list-tile-title v-text="task.title"></v-list-tile-title>
                     <v-list-tile-sub-title>{{ task.progress }}/{{ task.amount }}</v-list-tile-sub-title>
                   </v-list-tile-content>
+                  <v-list-tile-avatar v-if="task.progress >= task.amount">
+                    達成
+                  </v-list-tile-avatar>
                 </v-list-tile>
               </v-list>
               <v-card-text style="height: 100px; position: relative">
