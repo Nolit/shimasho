@@ -3,6 +3,10 @@ module.exports = {
         // この行を追加して有効化4
         '@nuxtjs/vuetify'
     ],
+    manifest: {
+        name: "QUANON's Page",
+        lang: 'ja'
+    },
 
     vuetify: {
         // Vuetify の設定はここに書く
