@@ -34,7 +34,6 @@
           </v-flex>
         </v-layout>
       </v-content>
-    <v-footer app>ここはフッターです</v-footer>
   </v-app>
   
 </template>
