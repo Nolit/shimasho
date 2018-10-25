@@ -91,12 +91,9 @@
               </v-menu>
             </v-flex>
           </v-card-text>
-          <v-card-actions style="
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          ">
+          <v-card-actions>
             <v-btn color="primary" flat @click="creationDialog=false">キャンセル</v-btn>
+            <v-spacer></v-spacer>
             <v-btn color="primary" flat @click="create();creationDialog=false" right>作成</v-btn>
           </v-card-actions>
         </v-card>
