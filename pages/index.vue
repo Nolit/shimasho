@@ -96,7 +96,7 @@ export default {
       })
     },
     paginateTaskList: function () {
-      location.href = "/tasks"
+      this.$router.push('/tasks')
     }
   },
   computed: {
