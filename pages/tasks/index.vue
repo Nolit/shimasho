@@ -49,7 +49,6 @@
             </v-card>
           </v-layout>
       </v-content>
-      <v-footer app>ここはフッターです</v-footer>
       <v-dialog v-model="creationDialog" max-width="500px">
         <v-card>
           <v-card-text>
