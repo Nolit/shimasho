@@ -75,7 +75,7 @@ export default {
         return;
       }
       if (! response.data.isLogin) {
-        if (confirm('ユーザ情報が存在しません。新規登録しますか？')) {
+        if (confirm('登録されてないよ！新規登録する？')) {
           this.signup(email, password)
         }    
       }
@@ -87,11 +87,11 @@ export default {
       client.post('/users', formData)
       .then(response => {
           if (response.data) {
-            alert('success Singup')
+            alert('登録かんりょう！')
             this.signin(email, password)
             return;
           }
-          alert('failed Signup')
+          alert('登録しっぱい')
       })
     },
     paginateTaskList: function () {
