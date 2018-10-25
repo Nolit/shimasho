@@ -52,8 +52,8 @@ export default {
   data: function () {
     return {
       form: {
-        email: 'aaaa@gmail.com',
-        password: 'aaaaaaaa',
+        email: '',
+        password: '',
       },
       passwordRule: [v => v.length >= 8 || 'Min 8 characters']
     }
