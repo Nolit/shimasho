@@ -16,5 +16,11 @@ module.exports = {
             accent: '#8c9eff',
             error: '#b71c1c'
         }
+    },
+    head: {
+        meta: [
+            { charset: 'utf-8' },
+            { name: 'viewport', content: 'width=device-width, initial-scale=1' }
+        ]
     }
 }
