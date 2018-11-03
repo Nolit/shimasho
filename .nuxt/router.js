@@ -3,9 +3,8 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-const _17580767 = () => import('..\\pages\\users\\index.vue' /* webpackChunkName: "pages_users_index" */).then(m => m.default || m)
 const _8e36ebbe = () => import('..\\pages\\tasks\\index.vue' /* webpackChunkName: "pages_tasks_index" */).then(m => m.default || m)
-const _a2bebe6e = () => import('..\\pages\\tasks\\_id.vue' /* webpackChunkName: "pages_tasks__id" */).then(m => m.default || m)
+const _078290e2 = () => import('..\\pages\\users\\_id.vue' /* webpackChunkName: "pages_users__id" */).then(m => m.default || m)
 const _41c48af6 = () => import('..\\pages\\index.vue' /* webpackChunkName: "pages_index" */).then(m => m.default || m)
 
 
@@ -67,19 +66,14 @@ export function createRouter () {
     scrollBehavior,
     routes: [
 		{
-			path: "/users",
-			component: _17580767,
-			name: "users"
-		},
-		{
 			path: "/tasks",
 			component: _8e36ebbe,
 			name: "tasks"
 		},
 		{
-			path: "/tasks/:id",
-			component: _a2bebe6e,
-			name: "tasks-id"
+			path: "/users/:id?",
+			component: _078290e2,
+			name: "users-id"
 		},
 		{
 			path: "/",
