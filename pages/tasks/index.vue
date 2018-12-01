@@ -47,7 +47,7 @@
                   bottom
                   right
                   style="background-color: #b5474c"
-                  @click="creationDialog = true"
+                  @click="openCreationDialog()"
                 >
                   <v-icon>add</v-icon>
                 </v-btn>
@@ -55,49 +55,7 @@
             </v-card>
           </v-layout>
       </v-content>
-      <v-dialog v-model="creationDialog" max-width="500px">
-        <v-card>
-          <v-card-text>
-            <v-flex>
-              <v-text-field
-                label="タイトル"
-                v-model="creation.title"
-              ></v-text-field>
-              <v-text-field
-                label="目標数"
-                type="number"
-                v-model.number="creation.amount"
-              ></v-text-field>
-              <v-menu
-                ref="dueDateDialog"
-                :close-on-content-click="false"
-                v-model="dueDateDialog"
-                :nudge-right="40"
-                lazy
-                transition="scale-transition"
-                offset-y
-                full-width
-                max-width="290px"
-                min-width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="creationDueDateFormatted"
-                  label="実施日"
-                  persistent-hint
-                  prepend-icon="event"
-                ></v-text-field>
-                <v-date-picker v-model="creation.dueDate" no-title @input="dueDateDialog = false"></v-date-picker>
-              </v-menu>
-            </v-flex>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" flat @click="creationDialog=false">キャンセル</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="create();creationDialog=false" right>作成</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
+      <CreationDialog></CreationDialog>
       <v-dialog v-model="progressDialog" max-width="500px">
         <v-card v-if="progressDialog">
           <v-card-title>
@@ -132,6 +90,7 @@
 <script>
 const axios = require('axios');
 import { mapMutations } from 'vuex'
+import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import axiosSettings from '../../util/axios-settings'
 import moment from 'moment'
 const client = axios.create(axiosSettings)
@@ -144,10 +103,6 @@ export default {
     return {
       tasks: [],
       date: moment(),
-      creationDialog: false,
-      creation: null,
-      creationDueDateFormatted: null,
-      dueDateDialog: false,
       progressDialog: false,
       editTaskKey: null,
       addProgressCount: 0
@@ -155,18 +110,10 @@ export default {
     }
   },
   created: function () {
-    this.initializeCreationForm()
     this.fetchDate()
     this.fetchData()
   },
   methods: {
-    initializeCreationForm: function () {
-      this.creation = {
-        title: '',
-        amount: 0,
-        dueDate: null
-      }
-    },
     fetchData: async function () {
       let response = await client.get('/tasks', {
         params: {
@@ -180,16 +127,6 @@ export default {
     fetchDate: async function () {
       let response = await client.get('/context/time')
       this.date = moment(response.data)
-    },
-    create: async function () {
-      const formData = new FormData();
-      formData.append('title', this.creation.title);
-      formData.append('dueDate', this.creation.dueDate);
-      formData.append('amount', this.creation.amount);
-      await client.post('/tasks', formData)
-      this.initializeCreationForm()
-      this.fetchData()
-      
     },
     select: function (key) {
       this.editTaskKey = key
@@ -219,6 +156,9 @@ export default {
       const [year, month, day] = date.split('-')
       return `${year}年${month}月${day}日`
     },
+    ...mapMutations('task', [      
+      'openCreationDialog'
+    ])
   },
   computed: {
     dateFormat: function () {
@@ -228,9 +168,6 @@ export default {
   watch: {
     date: function (date) {
       this.fetchData()
-    },
-    'creation.dueDate': function(val){
-      this.creationDueDateFormatted = this.formatDate(val)
     },
     progressDialog: function (isOpen) {
       if (! isOpen) {
@@ -243,6 +180,9 @@ export default {
         this.progressDialog = true
       }
     }
+  },
+  components: {
+      CreationDialog
   }
 }
 </script>
