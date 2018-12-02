@@ -7,6 +7,7 @@ const Task = {
     namespaced: true,
     state: {
         creationDialog: false,
+        stepUpDialog: false,
         list: [],
         date: moment(),
     },
@@ -16,6 +17,12 @@ const Task = {
         },
         closeCreationDialog(state) {
             state.creationDialog = false
+        },
+        openstepUpDialog(state) {
+            state.stepUpDialog = true
+        },
+        closestepUpDialog(state) {
+            state.stepUpDialog = false
         },
         setList(state, list) {
             state.list = list
