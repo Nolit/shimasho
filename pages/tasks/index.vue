@@ -16,7 +16,7 @@
                 <v-btn dark small style="background-color: #47b578" @click="prevDate()">
                   <v-icon dark>arrow_left</v-icon>
                 </v-btn>
-                <span style="font-size: 18px;">{{ dateFormat }}</span>
+                <span style="font-size: 18px;">{{ dateFormatted }}</span>
                 <v-btn dark small style="background-color: #47b578" @click="nextDate()">
                   <v-icon dark>arrow_right</v-icon>
                 </v-btn>
@@ -89,10 +89,9 @@
 
 <script>
 const axios = require('axios');
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import axiosSettings from '../../util/axios-settings'
-import moment from 'moment'
 const client = axios.create(axiosSettings)
 
 export default {
@@ -101,33 +100,17 @@ export default {
   },
   data: function () {
     return {
-      tasks: [],
-      date: moment(),
       progressDialog: false,
       editTaskKey: null,
       addProgressCount: 0
-      
     }
   },
   created: function () {
-    this.fetchDate()
-    this.fetchData()
+    console.log(this.date)
+    this.fetchNowDateTime()
+    this.fetchList(this.date)
   },
   methods: {
-    fetchData: async function () {
-      let response = await client.get('/tasks', {
-        params: {
-          year: this.date.year(),
-          month: this.date.month()+1,
-          day: this.date.date()
-        }
-      })
-      this.tasks = response.data
-    },
-    fetchDate: async function () {
-      let response = await client.get('/context/time')
-      this.date = moment(response.data)
-    },
     select: function (key) {
       this.editTaskKey = key
     },
@@ -136,39 +119,28 @@ export default {
       const addCount = this.addProgressCount
       await client.patch(`/tasks/${id}/progress/${addCount}`)
       this.progressDialog = false
-      this.fetchData()
-    },
-    nextDate:function () {
-      this.date = moment(this.date).add(1, 'days')
-    },
-    prevDate:function () {
-      this.date = moment(this.date).add(-1, 'days')
-    },
-    parseDate (date) {
-      if (! date) return null
-
-      const [month, day, year] = date.split('/')
-      return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-    },
-    formatDate (date) {
-      if (!date) return null
-
-      const [year, month, day] = date.split('-')
-      return `${year}年${month}月${day}日`
+      this.fetchList(this.date)
     },
     ...mapMutations('task', [      
       'openCreationDialog'
-    ])
+    ]),
+    ...mapActions ('task', {
+      fetchList: 'fetchList',
+      nextDate: 'fetchNextDateTasks',
+      prevDate: 'fetchPrevDateTasks',
+      fetchNowDateTime: 'fetchNowDateTime',
+    })
   },
   computed: {
-    dateFormat: function () {
-      return this.date.locale('ja').format('MM月DD日（ddd）')
-    }
+    ...mapState('task', {
+      tasks: 'list',
+      date: 'date'
+    }),
+    ...mapGetters('task', [
+        'dateFormatted'      
+    ])
   },
   watch: {
-    date: function (date) {
-      this.fetchData()
-    },
     progressDialog: function (isOpen) {
       if (! isOpen) {
         this.editTaskKey = null
