@@ -57,6 +57,9 @@ export default {
     created: function () {
         this.initializeForm()
     },
+    mounted: function () {
+        this.initializeForm()
+    },
     methods: {
         initializeForm: function () {
             this.form = {
@@ -81,12 +84,6 @@ export default {
         ...mapState('task', {
             isOpen: 'creationDialog'
         })
-    },
-    watch: {
-        isOpen: function () {
-            console.log('かわった')
-            this.initializeForm()
-        }
     }
 }
 
