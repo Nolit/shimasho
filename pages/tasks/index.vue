@@ -71,13 +71,10 @@
             <div style="text-align: right">
             <v-btn
               dark
-              fab
-              top
-              right
               style="background-color: #b5474c"
               @click="progress()"
             >
-                進捗！
+                ステップアップ
             </v-btn>
             </div>
           </v-card-text>
@@ -106,7 +103,6 @@ export default {
     }
   },
   created: function () {
-    console.log(typeof this.$store.state.task.calender)
     this.fetchNowDateTime()
     this.fetchList(this.date)
   },
