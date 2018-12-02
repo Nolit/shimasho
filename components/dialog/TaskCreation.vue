@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="isOpen" max-width="500px">
+    <v-dialog v-model="isOpen" max-width="500px" persistent>
         <v-card>
           <v-card-text>
             <v-flex>
