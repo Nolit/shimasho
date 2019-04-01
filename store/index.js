@@ -28,7 +28,7 @@ const Task = {
             state.list = list
         },
         setDate(state, date) {
-            state.date = date
+            state.date = moment(date)
         }
     },
     actions: {
