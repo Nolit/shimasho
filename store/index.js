@@ -8,6 +8,7 @@ const Task = {
     state: {
         creationDialog: false,
         stepUpDialog: false,
+        selectedTask: null,
         list: [],
         date: moment(),
     },
@@ -18,10 +19,12 @@ const Task = {
         closeCreationDialog(state) {
             state.creationDialog = false
         },
-        openstepUpDialog(state) {
+        openStepUpDialog(state, taskKey) {
+            state.selectedTask = state.list[taskKey]
             state.stepUpDialog = true
         },
-        closestepUpDialog(state) {
+        closeStepUpDialog(state) {
+            state.selectedTask = null
             state.stepUpDialog = false
         },
         setList(state, list) {
@@ -64,6 +67,12 @@ const Task = {
             commit('setDate', date)
             dispatch('fetchList', date)
         },
+        async progress({ state, commit, dispatch }, count) {
+            const id = state.selectedTask.id
+            await client.patch(`/tasks/${id}/progress/${count}`)
+            dispatch('fetchList', state.date)
+            commit('closeStepUpDialog')
+        }
     },
     getters: {
         dateFormatted: state => {
