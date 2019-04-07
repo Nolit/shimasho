@@ -28,7 +28,7 @@
                 <v-list-tile
                   v-for="(task, key) in tasks"
                   :key="task.id"
-                  @click="openStepUpDialog(key)"
+                  @click="openTaskDialog(key)"
                 >
                   <v-list-tile-content>
                     <v-list-tile-title v-text="task.title"></v-list-tile-title>
@@ -57,6 +57,7 @@
       </v-content>
       <CreationDialog></CreationDialog>
       <StepUpDialog></StepUpDialog>
+      <AchieveDialog></AchieveDialog>
       
   </v-app>
 </template>
@@ -66,6 +67,7 @@ const axios = require('axios');
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import StepUpDialog from '../../components/dialog/StepUp.vue'
+import AchieveDialog from '../../components/dialog/AchieveDialog.vue'
 import axiosSettings from '../../util/axios-settings'
 const client = axios.create(axiosSettings)
 
@@ -80,13 +82,13 @@ export default {
   methods: {
     ...mapMutations('task', [      
       'openCreationDialog',
-      'openStepUpDialog'
     ]),
     ...mapActions ('task', {
       fetchList: 'fetchList',
       nextDate: 'fetchNextDateTasks',
       prevDate: 'fetchPrevDateTasks',
       fetchNowDateTime: 'fetchNowDateTime',
+      openTaskDialog: 'openTaskDialog',
     })
   },
   computed: {
@@ -100,7 +102,8 @@ export default {
   },
   components: {
       CreationDialog,
-      StepUpDialog
+      StepUpDialog,
+      AchieveDialog
   }
 }
 </script>

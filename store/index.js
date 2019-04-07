@@ -8,6 +8,7 @@ const Task = {
     state: {
         creationDialog: false,
         stepUpDialog: false,
+        achieveDialog: false,
         selectedTask: null,
         list: [],
         date: moment(),
@@ -26,6 +27,14 @@ const Task = {
         closeStepUpDialog(state) {
             state.selectedTask = null
             state.stepUpDialog = false
+        },
+        openAchieveDialog(state, taskKey) {
+            state.selectedTask = state.list[taskKey]
+            state.achieveDialog = true
+        },
+        closeAchieveDialog(state) {
+            state.selectedTask = null
+            state.achieveDialog = false
         },
         setList(state, list) {
             state.list = list
@@ -72,7 +81,23 @@ const Task = {
             await client.patch(`/tasks/${id}/progress/${count}`)
             dispatch('fetchList', state.date)
             commit('closeStepUpDialog')
-        }
+        },
+        async achieve({ state, commit, dispatch }) {
+            const id = state.selectedTask.id
+            console.log("ここでajax")
+            dispatch('fetchList', state.date)
+            commit('closeAchieveDialog')
+        },
+        openTaskDialog({state, commit}, taskKey) {
+            const task = state.list[taskKey]
+            if (task.type === "AMOUNT") {
+                commit('openStepUpDialog', taskKey)
+            } else if (task.type === "TIME") {
+                console.log("未実装のタスクです")
+            } else {
+                commit('openAchieveDialog', taskKey)
+            }
+        },
     },
     getters: {
         dateFormatted: state => {
