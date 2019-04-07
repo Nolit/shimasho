@@ -1,16 +1,16 @@
 <template>
     <v-dialog v-model="isOpen" max-width="500px" persistent>
         <v-card>
+          <v-card-title primary-title>
+              <h1>
+                タスク作成
+              </h1>
+          </v-card-title>
           <v-card-text>
             <v-flex>
               <v-text-field
                 label="タイトル"
                 v-model="form.title"
-              ></v-text-field>
-              <v-text-field
-                label="目標数"
-                type="number"
-                v-model.number="form.amount"
               ></v-text-field>
               <v-menu
                 ref="dueDateDialog"
@@ -33,6 +33,32 @@
                 ></v-text-field>
                 <v-date-picker v-model="form.dueDate" no-title @input="dueDateDialog = false"></v-date-picker>
               </v-menu>
+              <br/>
+              <v-tabs fixed-tabs v-model="form.type">
+                <v-tab ripple>
+                  StepUp
+                </v-tab>
+                <v-tab ripple>
+                  Achieve
+                </v-tab>
+                <v-tab ripple :centered="true">
+                  Timer
+                </v-tab>
+                <v-tab-item :transition="false">
+                  目標到達までの数字を記録します
+                  <v-text-field
+                    label="目標数"
+                    type="number"
+                    v-model.number="form.amount"
+                  ></v-text-field>
+                </v-tab-item>
+                <v-tab-item :transition="false">
+                  達成したかどうかのみを記録します
+                </v-tab-item>
+                <v-tab-item :transition="false">
+                  時間型のタスクは未実装です
+                </v-tab-item>
+              </v-tabs>
             </v-flex>
           </v-card-text>
           <v-card-actions>
@@ -62,7 +88,8 @@ export default {
             this.form = {
                 title: '',
                 amount: 0,
-                dueDate: null
+                dueDate: null,
+                type: null
             }
         },
         ...mapMutations('task', {
