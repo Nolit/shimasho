@@ -3,7 +3,9 @@ const axios = require('axios');
 import axiosSettings from '../util/axios-settings'
 const client = axios.create(axiosSettings)
 import moment from 'moment'
-const Task = {
+import Task, {createStepUpTask, createAchieveTask} from '../models/Task'
+
+const TaskModule = {
     namespaced: true,
     state: {
         creationDialog: false,
@@ -62,7 +64,16 @@ const Task = {
                     day: date.date()
                 }
             })
-            commit('setList', response.data)
+            const tasks = response.data.map(task => {
+                if (task.type === "AMOUNT") {
+                    return createStepUpTask(task.id, task.title, task.dueDate, task.amount, task.progress)
+                } else if (task.type === "ACHIEVE") {
+                    return createAchieveTask(task.id, task.title, task.dueDate, task.achieved)
+                } else {
+                    console.log("不正なタスクです")
+                }
+            })
+            commit('setList', tasks)
         },
         async fetchNowDateTime({ state, commit }) {
             const date = await client.get('/context/time').data
@@ -92,11 +103,11 @@ const Task = {
         },
         openTaskDialog({state, commit}, taskKey) {
             const task = state.list[taskKey]
-            if (task.type === "AMOUNT") {
+            if (task.isStepUp()) {
                 commit('openStepUpDialog', taskKey)
-            } else if (task.type === "TIME") {
+            } else if (task.isTime()) {
                 console.log("未実装のタスクです")
-            } else if (task.type === "ACHIEVE") {
+            } else if (task.isAchieve()) {
                 commit('openAchieveDialog', taskKey)
             } else {
                 console.log("不正なタスクです")
@@ -115,7 +126,7 @@ const store = () => new Vuex.Store({
     mutations: {},
     actions: {},
     modules: {
-        task: Task
+        task: TaskModule
     }
 })
 
