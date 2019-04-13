@@ -33,7 +33,7 @@
             achieve: 'achieve'
           }),
           ...mapMutations('task', {
-              close: 'closeStepUpDialog',
+              close: 'closeAchieveDialog',
           }),
         },
     }
