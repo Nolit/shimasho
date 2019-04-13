@@ -11,17 +11,12 @@
               type="number"
               v-model.number="additionalProgressCount"
             ></v-text-field>
-            <div style="text-align: right">
-            <v-btn
-              dark
-              style="background-color: #b5474c"
-              @click="progress(additionalProgressCount)"
-            >
-                ステップアップ
-            </v-btn>
-            </div>
           </v-card-text>
-
+          <v-card-actions>
+            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" flat @click="progress(additionalProgressCount)" right>ステップアップ</v-btn>
+          </v-card-actions>
         </v-card>
     </v-dialog>
 </template>
@@ -44,7 +39,10 @@
         methods: {
           ...mapActions ('task', {
             progress: 'progress'
-          })
+          }),
+            ...mapMutations('task', {
+              close: 'closeStepUpDialog',
+          }),
         },
     }
 </script>
