@@ -26,7 +26,7 @@ const Task = {
         },
         closeStepUpDialog(state) {
             state.selectedTask = null
-            state.stepUpDialog = false
+            state.achieveDialog = false
         },
         openAchieveDialog(state, taskKey) {
             state.selectedTask = state.list[taskKey]
