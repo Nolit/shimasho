@@ -80,7 +80,7 @@ export default {
     this.fetchList(this.date)
   },
   methods: {
-    ...mapMutations('task', [      
+    ...mapMutations('task', [
       'openCreationDialog',
     ]),
     ...mapActions ('task', {
