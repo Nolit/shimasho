@@ -96,8 +96,10 @@ const Task = {
                 commit('openStepUpDialog', taskKey)
             } else if (task.type === "TIME") {
                 console.log("未実装のタスクです")
-            } else {
+            } else if (task.type === "ACHIEVE") {
                 commit('openAchieveDialog', taskKey)
+            } else {
+                console.log("不正なタスクです")
             }
         },
     },
