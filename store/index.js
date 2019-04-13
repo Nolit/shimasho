@@ -45,10 +45,12 @@ const Task = {
     },
     actions: {
         async create({ state, dispatch }, task) {
+            const TASK_TYPE = new Map([[0, "AMOUNT"], [1, "ACHIEVE"], [2, "TIME"]])
             const formData = new FormData()
             formData.append('title', task.title)
             formData.append('dueDate', task.dueDate)
             formData.append('amount', task.amount)
+            formData.append('type', TASK_TYPE.get(task.type))
             await client.post('/tasks', formData)
             dispatch('fetchList', state.date)
         },
@@ -84,7 +86,7 @@ const Task = {
         },
         async achieve({ state, commit, dispatch }) {
             const id = state.selectedTask.id
-            console.log("ここでajax")
+            await client.put(`/tasks/${id}/achieved`)
             dispatch('fetchList', state.date)
             commit('closeAchieveDialog')
         },
