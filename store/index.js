@@ -107,10 +107,8 @@ const TaskModule = {
                 commit('openStepUpDialog', taskKey)
             } else if (task.isTime()) {
                 console.log("未実装のタスクです")
-            } else if (task.isAchieve()) {
+            } else if (task.isAchieve() && ! task.isAchieved()) {
                 commit('openAchieveDialog', taskKey)
-            } else {
-                console.log("不正なタスクです")
             }
         },
     },
