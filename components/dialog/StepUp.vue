@@ -44,5 +44,12 @@
               close: 'closeStepUpDialog',
           }),
         },
+        watch: {
+          isOpen(isOpen) {
+              if (isOpen) {
+                  this.additionalProgressCount = 0
+              }
+          }
+        }
     }
 </script>
