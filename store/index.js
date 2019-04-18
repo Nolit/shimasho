@@ -1,13 +1,14 @@
 import Vuex from 'vuex'
 import Task from './Task'
-
-const store = () => new Vuex.Store({
+import Auth from './Auth'
+const store = new Vuex.Store({
     state: {},
     mutations: {},
     actions: {},
     modules: {
-        task: Task
+        task: Task,
+        auth: Auth
     }
 })
 
-export default store
+export default () => store
