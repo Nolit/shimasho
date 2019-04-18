@@ -1,6 +1,6 @@
-const STEP_UP = 0
-const ACHIEVE = 1
-const TIME = 2
+export const STEP_UP = 0
+export const ACHIEVE = 1
+export const TIME = 2
 
 export default class Task {
     constructor(id, title, type, dueDate, amount, progress, isAchieved) {
@@ -38,12 +38,10 @@ export default class Task {
     }
 }
 
-function createStepUpTask(id, title, dueDate, amount, progress) {
+export function createStepUpTask(id, title, dueDate, amount, progress) {
     return new Task(id, title, STEP_UP, dueDate, amount, progress, 0)
 }
 
-function createAchieveTask(id, title, dueDate, isAchieved) {
+export function createAchieveTask(id, title, dueDate, isAchieved) {
     return new Task(id, title, ACHIEVE, dueDate, 0, 0, isAchieved)
 }
-
-export {STEP_UP, ACHIEVE, TIME, createStepUpTask, createAchieveTask}
