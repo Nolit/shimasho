@@ -1,3 +1,7 @@
+const axios = require('axios');
+import axiosSettings from '../util/axios-settings'
+const client = axios.create(axiosSettings)
+
 export default {
     namespaced: true,
     state: {
@@ -47,10 +51,7 @@ export default {
             const response = await client.post('/login', formData)
             if (response.data === "OK") {
               const signInUserResponse = await client.get("/users/sign-in-user")
-              console.log(signInUserResponse)
-              console.log(signInUserResponse.data)
               rootState.signInUser = signInUserResponse.data
-
               this.app.router.push('/tasks')
               return;
             }
