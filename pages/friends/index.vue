@@ -27,10 +27,23 @@
                         </v-list-tile-content>
                     </v-list-tile>
                 </v-list>
+                <v-card-text style="height: 100px; position: relative">
+                  <v-btn
+                    absolute
+                    dark
+                    fab
+                    bottom
+                    right
+                    style="background-color: #b5474c"
+                    @click="openFollowDialog()"
+                  >
+                    <v-icon>add</v-icon>
+                  </v-btn>
+                </v-card-text>
             </v-card>
           </v-layout>
       </v-content>
-      
+      <FollowDialog></FollowDialog>
   </v-app>
 </template>
 
@@ -40,6 +53,7 @@ import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import axiosSettings from '../../util/axios-settings'
 const axios = require('axios')
 const client = axios.create(axiosSettings)
+import FollowDialog from '../../components/dialog/FollowDialog'
 
 export default {
   head: {
@@ -50,6 +64,7 @@ export default {
   },
   methods: {
     ...mapMutations('friend', [
+      'openFollowDialog'
     ]),
     ...mapActions ('friend', {
       fetchFollowedUsers: 'fetchFollowedUsers',
@@ -62,5 +77,8 @@ export default {
       friendCandidates: 'friendCandidates'
     })
   },
+  components: {
+    FollowDialog: FollowDialog
+  }
 }
 </script>
