@@ -1,7 +1,3 @@
-const axios = require('axios');
-import axiosSettings from '../util/axios-settings'
-const client = axios.create(axiosSettings)
-
 export default {
     namespaced: true,
     state: {
@@ -44,12 +40,17 @@ export default {
                 alert('登録失敗')
             })
         },
-        async signIn({ state, commit }) {
-            const formData = new FormData();
-            formData.append('email', state.email);
-            formData.append('password', state.password);
-            let response = await client.post('/login', formData)
+        async signIn({ state, commit, rootState }) {
+            const formData = new FormData()
+            formData.append('email', state.email)
+            formData.append('password', state.password)
+            const response = await client.post('/login', formData)
             if (response.data === "OK") {
+              const signInUserResponse = await client.get("/users/sign-in-user")
+              console.log(signInUserResponse)
+              console.log(signInUserResponse.data)
+              rootState.signInUser = signInUserResponse.data
+
               this.app.router.push('/tasks')
               return;
             }
