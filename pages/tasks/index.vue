@@ -6,6 +6,7 @@
           </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
+            <v-btn flat @click="$router.push('/friends')">フレンド</v-btn>
             <v-btn flat @click="$router.push('/')">ログアウト</v-btn>
           </v-toolbar-items>
       </v-toolbar>
