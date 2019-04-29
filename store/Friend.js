@@ -18,8 +18,8 @@ export default {
         }
     },
     actions: {
-        async fetchFollowedUsers({ state, commit, dispatch }) {
-            const res = await client.get(`/users/${25}/followed-users`)
+        async fetchFollowedUsers({ state, commit, dispatch, rootState }) {
+            const res = await client.get(`/users/${rootState.signInUser.id}/followed-users`)
             const followedUsers = res.data.map(user => new User(user.id, user.userName))
             commit('setFollowedUsers', followedUsers)
         },
