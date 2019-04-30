@@ -1,5 +1,5 @@
 <template>
-    <v-dialog v-model="isOpen" max-width="500px">
+    <v-dialog v-model="isOpen" max-width="500px" persistent>
         <v-card v-if="isOpen">
           <v-card-title>
             <span class="headline">ユーザー一覧</span>
@@ -17,6 +17,9 @@
                 </v-list-tile>
             </v-list>
           </v-card-text>
+          <v-card-actions>
+            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+          </v-card-actions>
         </v-card>
     </v-dialog>
 </template>
