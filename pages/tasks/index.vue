@@ -1,15 +1,6 @@
 <template>
   <v-app light>
-      <v-toolbar style="background-color: #47b578" dark app>
-          <v-toolbar-title>
-              Task List
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn flat @click="$router.push('/friends')">フレンド</v-btn>
-            <v-btn flat @click="$router.push('/')">ログアウト</v-btn>
-          </v-toolbar-items>
-      </v-toolbar>
+      <Header />
       <v-content style="margin-left: auto;margin-right: auto">
           <v-layout mt-5>
             <v-card style="min-width: 400px;">
@@ -67,6 +58,7 @@
 
 <script>
 const axios = require('axios');
+import Header from '../../components/Header'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import StepUpDialog from '../../components/dialog/StepUp.vue'
@@ -106,7 +98,8 @@ export default {
   components: {
       CreationDialog,
       StepUpDialog,
-      AchieveDialog
+      AchieveDialog,
+      Header
   }
 }
 </script>

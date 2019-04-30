@@ -1,15 +1,6 @@
 <template>
   <v-app light>
-      <v-toolbar style="background-color: #47b578" dark app>
-          <v-toolbar-title>
-              Friend List
-          </v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-            <v-btn flat @click="$router.push('/tasks')">タスク</v-btn>
-            <v-btn flat @click="$router.push('/')">ログアウト</v-btn>
-          </v-toolbar-items>
-      </v-toolbar>
+      <Header />
       <v-content style="margin-left: auto;margin-right: auto">
           <v-layout mt-5>
             <v-card style="min-width: 400px;">
@@ -48,6 +39,7 @@
 </template>
 
 <script>
+import Header from '../../components/Header'
 import User from '../../models/User'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import axiosSettings from '../../util/axios-settings'
@@ -78,7 +70,8 @@ export default {
     })
   },
   components: {
-    FollowDialog: FollowDialog
+    FollowDialog: FollowDialog,
+    Header
   }
 }
 </script>
