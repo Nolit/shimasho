@@ -5,6 +5,7 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
+        <v-btn flat v-if="$router.currentRoute.path !== '/timelines'" @click="$router.push('/timelines')">タイムライン</v-btn>
         <v-btn flat v-if="$router.currentRoute.path !== '/friends'" @click="$router.push('/friends')">フレンド</v-btn>
         <v-btn flat v-if="$router.currentRoute.path !== '/tasks'" @click="$router.push('/tasks')">タスク</v-btn>
         <v-btn flat @click="$router.push('/')">ログアウト</v-btn>

@@ -2,6 +2,7 @@ import Vuex from 'vuex'
 import Task from './Task'
 import Auth from './Auth'
 import Friend from './Friend'
+import Timeline from './Timeline'
 const store = new Vuex.Store({
     state: {
         signInUser: null
@@ -11,7 +12,8 @@ const store = new Vuex.Store({
     modules: {
         task: Task,
         auth: Auth,
-        friend: Friend
+        friend: Friend,
+        timeline: Timeline
     }
 })
 
