@@ -11,7 +11,6 @@
                     <v-list-tile
                         v-for="(followedUser) in followedUsers"
                         :key="followedUser.id"
-                        @click="openTaskDialog(key)"
                     >
                         <v-list-tile-content>
                             <v-list-tile-title v-text="followedUser.name"></v-list-tile-title>
