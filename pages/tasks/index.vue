@@ -70,7 +70,7 @@ export default {
   head: {
     title: 'Tasks'
   },
-  created: function () {
+  mounted: function () {
     this.fetchNowDateTime()
     this.fetchList(this.date)
   },

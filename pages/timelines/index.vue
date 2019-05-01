@@ -34,7 +34,7 @@ export default {
   head: {
     title: 'Timelines'
   },
-  created: function () {
+  mounted: function () {
     this.fetchList()
   },
   methods: {

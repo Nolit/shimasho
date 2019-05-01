@@ -50,7 +50,7 @@ export default {
   head: {
     title: 'Friends'
   },
-  created() {
+  mounted() {
       this.fetchFollowedUsers()
   },
   methods: {
