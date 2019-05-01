@@ -33,8 +33,13 @@ export default {
             const followCandidates = res.data.map(user => new User(user.id, user.userName))
             commit('setFollowCandidates', followCandidates)
         },
-        async follow({ state, commit, dispatch, rootState }, user) {
-            const res = await client.put(`/users/${rootState.signInUser.id}/followed-users/${user.id}`)
+        async follow({ commit, dispatch, rootState }, user) {
+            await client.put(`/users/${rootState.signInUser.id}/followed-users/${user.id}`)
+            commit('closeFollowDialog')
+            dispatch('fetchFollowedUsers')
+        },
+        async unfollow({ commit, dispatch, rootState }, userId) {
+            await client.delete(`/users/${rootState.signInUser.id}/followed-users/${userId}`)
             commit('closeFollowDialog')
             dispatch('fetchFollowedUsers')
         }

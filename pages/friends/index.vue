@@ -15,6 +15,11 @@
                         <v-list-tile-content>
                             <v-list-tile-title v-text="followedUser.name"></v-list-tile-title>
                         </v-list-tile-content>
+                        <v-list-tile-action>
+                          <v-btn icon ripple @click.stop="unfollow(followedUser.id)">
+                            <v-icon color="red lighten-1">delete</v-icon>
+                          </v-btn>
+                        </v-list-tile-action>
                     </v-list-tile>
                 </v-list>
                 <v-card-text style="height: 100px; position: relative">
@@ -57,6 +62,7 @@ export default {
     ...mapActions ('friend', {
       fetchFollowedUsers: 'fetchFollowedUsers',
       fetchFriendCandidates: 'fetchFriendCandidates',
+      unfollow: 'unfollow',
     })
   },
   computed: {
