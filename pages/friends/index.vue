@@ -41,9 +41,6 @@
 import Header from '../../components/Header'
 import User from '../../models/User'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
-import axiosSettings from '../../util/axios-settings'
-const axios = require('axios')
-const client = axios.create(axiosSettings)
 import FollowDialog from '../../components/dialog/FollowDialog'
 
 export default {

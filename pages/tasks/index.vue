@@ -57,14 +57,11 @@
 </template>
 
 <script>
-const axios = require('axios');
 import Header from '../../components/Header'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import StepUpDialog from '../../components/dialog/StepUp.vue'
 import AchieveDialog from '../../components/dialog/AchieveDialog.vue'
-import axiosSettings from '../../util/axios-settings'
-const client = axios.create(axiosSettings)
 
 export default {
   head: {

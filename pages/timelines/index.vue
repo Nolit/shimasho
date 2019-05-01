@@ -24,11 +24,8 @@
 </template>
 
 <script>
-const axios = require('axios');
 import Header from '../../components/Header'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
-import axiosSettings from '../../util/axios-settings'
-const client = axios.create(axiosSettings)
 
 export default {
   head: {

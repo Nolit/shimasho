@@ -1,6 +1,4 @@
-const axios = require('axios');
-import axiosSettings from '../util/axios-settings'
-const client = axios.create(axiosSettings)
+import client from '../util/http-client'
 import User from '../models/User'
 
 export default {

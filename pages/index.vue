@@ -42,9 +42,6 @@
 <script>
 import SignUpDialog from '../components/dialog/SignUpDialog'
 import { mapMutations, mapActions } from 'vuex'
-import axiosSettings from '../util/axios-settings'
-const axios = require('axios');
-const client = axios.create(axiosSettings)
 
 export default {
   head: {

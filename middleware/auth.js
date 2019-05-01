@@ -1,6 +1,4 @@
-const axios = require('axios');
-import axiosSettings from '../util/axios-settings'
-const client = axios.create(axiosSettings)
+import client from '../util/http-client'
 
 export default async function ({store, redirect, route, commit}) {
     if (route.path === '/') {
