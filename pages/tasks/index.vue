@@ -31,6 +31,11 @@
                       <v-list-tile-sub-title>{{ task.progress }}/{{ task.amount }}</v-list-tile-sub-title>                      
                     </template>
                   </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn icon ripple @click.stop="remove(task.id)">
+                      <v-icon color="red lighten-1">delete</v-icon>
+                    </v-btn>
+                  </v-list-tile-action>
                 </v-list-tile>
               </v-list>
               <v-card-text style="height: 100px; position: relative">
@@ -81,6 +86,7 @@ export default {
       prevDate: 'fetchPrevDateTasks',
       fetchNowDateTime: 'fetchNowDateTime',
       openTaskDialog: 'openTaskDialog',
+      remove: 'remove'
     })
   },
   computed: {

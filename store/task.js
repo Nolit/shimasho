@@ -108,6 +108,10 @@ export default {
                 commit('openAchieveDialog', taskKey)
             }
         },
+        async remove({ state, dispatch }, id) {
+            await client.delete(`/tasks/${id}`)
+            dispatch('fetchList', state.date)
+        }
     },
     getters: {
         dateFormatted: state => {
