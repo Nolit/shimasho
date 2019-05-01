@@ -39,7 +39,7 @@ module.exports = {
      ** Plugins to load before mounting the App
      */
     plugins: [
-        '@/plugins/vuetify'
+        '@plugins/vuetify'
     ],
 
     /*
@@ -49,12 +49,18 @@ module.exports = {
         // Doc: https://github.com/nuxt-community/axios-module#usage
         '@nuxtjs/axios',
         '@nuxtjs/vuetify',
+        '@nuxtjs/toast'
     ],
     /*
      ** Axios module configuration
      */
     axios: {
         // See https://github.com/nuxt-community/axios-module#options
+    },
+
+    toast: {
+        position: 'bottom-right',
+        duration: 3000
     },
 
     /*

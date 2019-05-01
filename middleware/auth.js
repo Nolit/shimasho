@@ -9,11 +9,11 @@ export default async function ({store, redirect, route, commit}) {
     try {
         const response = await client.get("/users/sign-in-user")
         if (response.data) {
-            store.state.signInUser = signInUserResponse.data
+            store.state.signInUser = response.data
             return
         }
     } catch (error) {
-        console.log(error)
+        Vue.toasted.error(error.response.data.message)
     }
     return redirect('/')
 }
