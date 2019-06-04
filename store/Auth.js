@@ -48,7 +48,7 @@ export default {
             formData.append('password', state.password)
             const response = await client.post('/login', formData)
             if (response.data === "OK") {
-              const signInUserResponse = await client.get("/users/sign-in-user")
+              const signInUserResponse = await client.get("/users/me")
               rootState.signInUser = signInUserResponse.data
               this.app.router.push('/tasks')
               return;

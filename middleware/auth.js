@@ -7,7 +7,7 @@ export default async function ({store, redirect, route, commit}) {
     }
     
     try {
-        const response = await client.get("/users/sign-in-user")
+        const response = await client.get("/users/me")
         if (response.data) {
             store.state.signInUser = response.data
             return
