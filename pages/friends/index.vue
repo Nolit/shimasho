@@ -9,14 +9,14 @@
                 </v-toolbar>
                 <v-list>
                     <v-list-tile
-                        v-for="(followedUser) in followedUsers"
-                        :key="followedUser.id"
+                        v-for="followee in followees"
+                        :key="followee.id"
                     >
                         <v-list-tile-content>
-                            <v-list-tile-title v-text="followedUser.name"></v-list-tile-title>
+                            <v-list-tile-title v-text="followee.name"></v-list-tile-title>
                         </v-list-tile-content>
                         <v-list-tile-action>
-                          <v-btn icon ripple @click.stop="unfollow(followedUser.id)">
+                          <v-btn icon ripple @click.stop="unfollow(followee.id)">
                             <v-icon color="red lighten-1">delete</v-icon>
                           </v-btn>
                         </v-list-tile-action>
@@ -53,22 +53,20 @@ export default {
     title: 'Friends'
   },
   mounted() {
-      this.fetchFollowedUsers()
+      this.fetchFollowees()
   },
   methods: {
     ...mapMutations('friend', [
       'openFollowDialog'
     ]),
     ...mapActions ('friend', {
-      fetchFollowedUsers: 'fetchFollowedUsers',
-      fetchFriendCandidates: 'fetchFriendCandidates',
+      fetchFollowees: 'fetchFollowees',
       unfollow: 'unfollow',
     })
   },
   computed: {
     ...mapState('friend', {
-      followedUsers: 'followedUsers',
-      friendCandidates: 'friendCandidates'
+      followees: 'followees'
     })
   },
   components: {

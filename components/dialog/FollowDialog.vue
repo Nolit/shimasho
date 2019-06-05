@@ -36,13 +36,13 @@
         computed: {
             ...mapState('friend', {
                 isOpen: 'followDialog',
-                users: 'followCandidates'
+                users: 'followeeCandidates'
             })
         },
         methods: {
             ...mapActions ('friend', {
                 follow: 'follow',
-                fetchFollowCandidates: 'fetchFollowCandidates'
+                fetchFolloweeCandidates: 'fetchFolloweeCandidates'
             }),
             ...mapMutations('friend', {
                 close: 'closeFollowDialog',
@@ -51,7 +51,7 @@
         watch: {
             isOpen(isOpen) {
                 if (isOpen) {
-                    this.fetchFollowCandidates()
+                    this.fetchFolloweeCandidates()
                 }
             }
         }

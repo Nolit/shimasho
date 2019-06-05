@@ -4,16 +4,16 @@ import User from '../models/User'
 export default {
     namespaced: true,
     state: {
-        followedUsers: [],
-        followCandidates: [],
+        followees: [],
+        followeeCandidates: [],
         followDialog: false
     },
     mutations: {
-        setFollowedUsers (state, followedUsers) {
-            state.followedUsers = followedUsers
+        setFollowees (state, followees) {
+            state.followees = followees
         },
-        setFollowCandidates (state, followCandidates) {
-            state.followCandidates = followCandidates
+        setFolloweeCandidates (state, followeeCandidates) {
+            state.followeeCandidates = followeeCandidates
         },
         openFollowDialog (state) {
             state.followDialog = true
@@ -23,25 +23,25 @@ export default {
         }
     },
     actions: {
-        async fetchFollowedUsers({ state, commit, dispatch, rootState }) {
+        async fetchFollowees({ state, commit, dispatch, rootState }) {
             const res = await client.get(`/users/${rootState.signInUser.id}/followees`)
-            const followedUsers = res.data.map(user => new User(user.id, user.userName))
-            commit('setFollowedUsers', followedUsers)
+            const followees = res.data.map(user => new User(user.id, user.userName))
+            commit('setFollowees', followees)
         },
-        async fetchFollowCandidates({ state, commit, dispatch, rootState }) {
+        async fetchFolloweeCandidates({ state, commit, dispatch, rootState }) {
             const res = await client.get(`/users/${rootState.signInUser.id}/followees-candidates`)
-            const followCandidates = res.data.map(user => new User(user.id, user.userName))
-            commit('setFollowCandidates', followCandidates)
+            const followeeCandidates = res.data.map(user => new User(user.id, user.userName))
+            commit('setFolloweeCandidates', followeeCandidates)
         },
         async follow({ commit, dispatch, rootState }, user) {
             await client.put(`/users/${rootState.signInUser.id}/followees/${user.id}`)
             commit('closeFollowDialog')
-            dispatch('fetchFollowedUsers')
+            dispatch('fetchFollowees')
         },
         async unfollow({ commit, dispatch, rootState }, userId) {
             await client.delete(`/users/${rootState.signInUser.id}/followees/${userId}`)
             commit('closeFollowDialog')
-            dispatch('fetchFollowedUsers')
+            dispatch('fetchFollowees')
         }
     }
 }
