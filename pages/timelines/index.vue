@@ -20,11 +20,13 @@
             </v-flex>
           </v-layout>
       </v-content>
+      <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 
 export default {
@@ -47,7 +49,8 @@ export default {
     })
   },
   components: {
-      Header
+      Header,
+      Footer
   }
 }
 </script>

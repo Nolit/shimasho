@@ -39,11 +39,13 @@
           </v-layout>
       </v-content>
       <FollowDialog></FollowDialog>
+      <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import User from '../../models/User'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import FollowDialog from '../../components/dialog/FollowDialog'
@@ -71,7 +73,8 @@ export default {
   },
   components: {
     FollowDialog: FollowDialog,
-    Header
+    Header,
+    Footer
   }
 }
 </script>

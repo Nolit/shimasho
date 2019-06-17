@@ -57,12 +57,13 @@
       <CreationDialog></CreationDialog>
       <StepUpDialog></StepUpDialog>
       <AchieveDialog></AchieveDialog>
-      
+      <Footer></Footer>
   </v-app>
 </template>
 
 <script>
 import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 import CreationDialog from '../../components/dialog/TaskCreation.vue'
 import StepUpDialog from '../../components/dialog/StepUp.vue'
@@ -102,7 +103,8 @@ export default {
       CreationDialog,
       StepUpDialog,
       AchieveDialog,
-      Header
+      Header,
+      Footer
   }
 }
 </script>
