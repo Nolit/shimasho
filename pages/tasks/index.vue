@@ -1,5 +1,5 @@
 <template>
-  <v-app light>
+  <v-app v-touch="{ left: () => prevDate(), right: () => nextDate() }" light>
       <Header />
       <v-content style="margin-left: auto;margin-right: auto">
           <v-layout mt-5>
