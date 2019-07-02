@@ -3,6 +3,10 @@ const pkg = require('./package')
 module.exports = {
     mode: 'spa',
 
+    server: {
+        host: '0.0.0.0',
+    },
+
     router: {
         middleware: [
             'auth'
