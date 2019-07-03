@@ -79,5 +79,3 @@ dist
 
 # IDE
 .idea
-
-/util/http-client.js
