@@ -36,14 +36,17 @@
               <br/>
               <v-tabs fixed-tabs v-model="form.type">
                 <v-tab ripple>
-                  StepUp
+                  Achieve
                 </v-tab>
                 <v-tab ripple>
-                  Achieve
+                  StepUp
                 </v-tab>
                 <v-tab ripple :centered="true">
                   Timer
                 </v-tab>
+                <v-tab-item :transition="false">
+                  達成したかどうかのみを記録します
+                </v-tab-item>
                 <v-tab-item :transition="false">
                   目標到達までの数字を記録します
                   <v-text-field
@@ -51,9 +54,6 @@
                     type="number"
                     v-model.number="form.amount"
                   ></v-text-field>
-                </v-tab-item>
-                <v-tab-item :transition="false">
-                  達成したかどうかのみを記録します
                 </v-tab-item>
                 <v-tab-item :transition="false">
                   時間型のタスクは未実装です
