@@ -3,11 +3,29 @@
       <Header />
       <v-content style="margin-left: auto;margin-right: auto">
           <v-layout mt-5>
-            <v-card style="min-width: 400px;">
-                <v-toolbar style="background-color: #4682b4" dark>
-                    <v-toolbar-title style="font-weight: bold;">友達</v-toolbar-title>
-                </v-toolbar>
-                <v-list>
+            <v-tabs
+              v-model="active"
+              color="cyan"
+              dark
+              slider-color="yellow"
+            >
+              <v-tab ripple>
+                  会員情報
+              </v-tab>
+              <v-tab ripple>
+                  フォローリスト
+              </v-tab>
+              <v-tab ripple>
+                  フォロワーリスト
+              </v-tab>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>ここに会員情報</v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-list>
                     <v-list-tile
                         v-for="followee in followees"
                         :key="followee.id"
@@ -21,21 +39,28 @@
                           </v-btn>
                         </v-list-tile-action>
                     </v-list-tile>
-                </v-list>
-                <v-card-text style="height: 100px; position: relative">
-                  <v-btn
-                    absolute
-                    dark
-                    fab
-                    bottom
-                    right
-                    style="background-color: #b5474c"
-                    @click="openFollowDialog()"
-                  >
-                    <v-icon>add</v-icon>
-                  </v-btn>
-                </v-card-text>
-            </v-card>
+                  </v-list>
+                  <v-card-text style="height: 100px; position: relative">
+                    <v-btn
+                      absolute
+                      dark
+                      fab
+                      bottom
+                      right
+                      style="background-color: #b5474c"
+                      @click="openFollowDialog()"
+                    >
+                      <v-icon>add</v-icon>
+                    </v-btn>
+                  </v-card-text>
+                </v-card>
+              </v-tab-item>
+              <v-tab-item>
+                <v-card flat>
+                  <v-card-text>ここにフォロワーリスト</v-card-text>
+                </v-card>
+              </v-tab-item>
+            </v-tabs>
           </v-layout>
       </v-content>
       <FollowDialog></FollowDialog>
