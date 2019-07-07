@@ -11,6 +11,7 @@
             ></v-text-field>
             <v-text-field
               label="パスワード"
+              :type="'password'"
               v-model="password"
             ></v-text-field>
             <v-text-field
