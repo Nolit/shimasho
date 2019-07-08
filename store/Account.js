@@ -17,13 +17,11 @@ export default {
     },
     actions: {
         async updateAccount({ state, commit, dispatch, rootState }, user) {
-            console.log("updateAccount")
-            console.log(user)
-            await client.patch("/users", user)
-        },
-        async fetchAccount({ commit }) {
-            const signInUserResponse = await client.get("/users/me")
-            commit(signInUserResponse.data)
+            const id = rootState.signInUser.id
+            client.patch(`/users/${id}`, user).then(response => {
+                const user = response.data
+                rootState.signInUser = user
+            })
         },
     }
 }

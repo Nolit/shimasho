@@ -126,16 +126,21 @@ export default {
       fetchFollowees: 'fetchFollowees',
       unfollow: 'unfollow',
     }),
-    ...mapActions ('account', {
-      updateAccount: 'updateAccount',
-    }),
     tabChanged(changedTabIndex) {
       if (changedTabIndex === ACCOUT_TAB_INDEX) {
         this.initializeAccountForm()
       }
     },
+    updateAccount(user) {
+      this.$store.dispatch('account/updateAccount', user).then(response => {
+        this.$toasted.success("更新しました")
+      })
+    }
   },
   computed: {
+    ...mapState('friend', {
+      followees: 'followees',
+    }),
     ...mapState({
       signInUser: 'signInUser'
     })
