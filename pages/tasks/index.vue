@@ -38,19 +38,10 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </v-list>
-              <v-card-text style="height: 100px; position: relative">
-                <v-btn
-                  absolute
-                  dark
-                  fab
-                  bottom
-                  right
-                  style="background-color: #b5474c"
-                  @click="openCreationDialog()"
-                >
-                  <v-icon>add</v-icon>
-                </v-btn>
-              </v-card-text>
+              <v-card-actions style="margin-bottom:20px">
+                <v-spacer />
+                <v-btn flat color="red" @click="openCreationDialog()">Add</v-btn>
+              </v-card-actions>
             </v-card>
           </v-layout>
       </v-content>

@@ -1,27 +1,28 @@
 <template>
-    <v-bottom-nav
-        :active="navigation"
-        :color="color"
-        :value="true"
-        fixed
-        dark
-        shift
-    >
-        <v-btn @click="$router.push('/tasks')" dark>
-            <span>Task</span>
-            <v-icon>list</v-icon>
-        </v-btn>
+    <v-footer height="auto">
+        <v-bottom-nav
+            :active="navigation"
+            :color="color"
+            :value="true"
+            dark
+            fixed
+        >
+            <v-btn @click="$router.push('/tasks')" dark>
+                <span>Task</span>
+                <v-icon>list</v-icon>
+            </v-btn>
 
-        <v-btn @click="$router.push('/timelines')" dark>
-            <span>Timeline</span>
-            <v-icon>timelines</v-icon>
-        </v-btn>
+            <v-btn @click="$router.push('/timelines')" dark>
+                <span>Timeline</span>
+                <v-icon>timelines</v-icon>
+            </v-btn>
 
-        <v-btn @click="$router.push('/friends')" dark>
-            <span>Friend</span>
-            <v-icon>group</v-icon>
-        </v-btn>
-    </v-bottom-nav>
+            <v-btn @click="$router.push('/friends')" dark>
+                <span>Friend</span>
+                <v-icon>group</v-icon>
+            </v-btn>
+        </v-bottom-nav>
+    </v-footer>
 </template>
 
 <script>
