@@ -44,7 +44,7 @@ export default {
     },
     actions: {
         async create({ state, dispatch }, task) {
-            const TASK_TYPE = new Map([[0, "AMOUNT"], [1, "ACHIEVE"], [2, "TIME"]])
+            const TASK_TYPE = new Map([[0, "ACHIEVE"], [1, "AMOUNT"], [2, "TIME"]])
             const formData = new FormData()
             formData.append('title', task.title)
             formData.append('dueDate', task.dueDate)
