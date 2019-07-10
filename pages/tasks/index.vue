@@ -2,7 +2,7 @@
   <v-app v-touch="{ right: () => prevDate(), left: () => nextDate() }" light>
       <Header />
       <v-content style="margin-left: auto;margin-right: auto">
-          <v-layout mt-5>
+          <v-layout mt-1>
             <v-card style="min-width: 400px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <v-btn dark small style="background-color: #47b578" @click="prevDate()">
@@ -16,7 +16,7 @@
               <v-toolbar style="background-color: #4682b4" dark>
                 <v-toolbar-title style="font-weight: bold;">タスク</v-toolbar-title>
               </v-toolbar>
-              <v-list>
+              <v-list style="max-height: 350px" class="scroll-y">
                 <v-list-tile
                   v-for="(task, key) in tasks"
                   :key="task.id"
@@ -38,9 +38,9 @@
                   </v-list-tile-action>
                 </v-list-tile>
               </v-list>
-              <v-card-actions style="margin-bottom:20px">
+              <v-card-actions>
                 <v-spacer />
-                <v-btn flat color="red" @click="openCreationDialog()">Add</v-btn>
+                <v-btn flat color="blue" @click="openCreationDialog()" style="font-weight: bold">Add</v-btn>
               </v-card-actions>
             </v-card>
           </v-layout>
