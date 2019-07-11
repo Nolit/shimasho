@@ -88,15 +88,15 @@ export default {
         },
         async progress({ state, commit, dispatch }, count) {
             const id = state.selectedTask.id
+            commit('closeStepUpDialog')
             await client.patch(`/tasks/${id}/progress/${count}`)
             dispatch('fetchList', state.date)
-            commit('closeStepUpDialog')
         },
         async achieve({ state, commit, dispatch }) {
             const id = state.selectedTask.id
+            commit('closeAchieveDialog')
             await client.put(`/tasks/${id}/achieved`)
             dispatch('fetchList', state.date)
-            commit('closeAchieveDialog')
         },
         openTaskDialog({state, commit}, taskKey) {
             const task = state.list[taskKey]

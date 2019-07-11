@@ -29,12 +29,14 @@
             })
         },
         methods: {
-          ...mapActions ('task', {
-            achieve: 'achieve'
-          }),
           ...mapMutations('task', {
               close: 'closeAchieveDialog',
           }),
+          achieve() {
+            this.$store.dispatch('task/achieve').then(response => {
+              this.$toasted.success("達成！")
+            })
+          }
         },
     }
 </script>

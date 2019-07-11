@@ -37,10 +37,12 @@
             })
         },
         methods: {
-          ...mapActions ('task', {
-            progress: 'progress'
-          }),
-            ...mapMutations('task', {
+          progress (count) {
+            this.$store.dispatch('task/progress', count).then(response => {
+              this.$toasted.success("ステップアップ！")
+            })
+          },
+          ...mapMutations('task', {
               close: 'closeStepUpDialog',
           }),
         },
