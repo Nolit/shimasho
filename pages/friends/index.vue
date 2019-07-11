@@ -29,6 +29,7 @@
                       label="パスワード"
                       :type="'password'"
                       v-model="accountForm.password"
+                      autocomplete="off"
                     ></v-text-field>
                     <v-text-field
                       label="ユーザー名"
