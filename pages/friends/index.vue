@@ -23,23 +23,27 @@
                   <v-card-text>
                     <v-text-field
                       label="メールアドレス"
+                      :readonly="isShow"
                       v-model="accountForm.email"
                     ></v-text-field>
                     <v-text-field
                       label="パスワード"
                       :type="'password'"
                       v-model="accountForm.password"
+                      :readonly="isShow"
                       autocomplete="nope"
                     ></v-text-field>
                     <v-text-field
                       label="ユーザー名"
                       v-model="accountForm.userName"
+                      :readonly="isShow"
                     ></v-text-field>
                   </v-card-text>
                   <v-card-actions>
-                      <v-btn color="primary" flat @click="initializeAccountForm()">キャンセル</v-btn>
+                      <v-btn v-show="! isShow" color="primary" flat @click="initializeAccountForm(); isShow = true">キャンセル</v-btn>
                       <v-spacer></v-spacer>
-                      <v-btn color="primary" flat @click="updateAccount(accountForm)" right>更新</v-btn>
+                      <v-btn v-show="isShow" color="primary" flat @click="isShow = false" right>編集</v-btn>
+                      <v-btn v-show="! isShow" color="primary" flat @click="updateAccount(accountForm); isShow = true" right>更新</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-tab-item>
@@ -106,6 +110,7 @@ export default {
   data: function () {
       return {
           accountForm: null,
+          isShow: true
       }
   },
   created() {
