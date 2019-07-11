@@ -77,9 +77,13 @@ export default {
       nextDate: 'fetchNextDateTasks',
       prevDate: 'fetchPrevDateTasks',
       fetchNowDateTime: 'fetchNowDateTime',
-      openTaskDialog: 'openTaskDialog',
-      remove: 'remove'
-    })
+      openTaskDialog: 'openTaskDialog'
+    }),
+    remove(id) {
+      this.$store.dispatch('task/remove', id).then(response => {
+        this.$toasted.success("削除しました")
+      })
+    }
   },
   computed: {
     ...mapState('task', {

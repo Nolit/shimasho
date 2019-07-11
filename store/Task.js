@@ -109,8 +109,9 @@ export default {
             }
         },
         async remove({ state, dispatch }, id) {
-            await client.delete(`/tasks/${id}`)
-            dispatch('fetchList', state.date)
+            client.delete(`/tasks/${id}`).then(response => {
+                dispatch('fetchList', state.date)
+            })
         }
     },
     getters: {
