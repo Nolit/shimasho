@@ -18,10 +18,8 @@ export default {
     actions: {
         async updateAccount({ state, commit, dispatch, rootState }, user) {
             const id = rootState.signInUser.id
-            client.patch(`/users/${id}`, user).then(response => {
-                const user = response.data
-                rootState.signInUser = user
-            })
+            const response = await client.patch(`/users/${id}`, user)
+            rootState.signInUser = response.data
         },
     }
 }
