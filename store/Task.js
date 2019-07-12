@@ -2,6 +2,10 @@ import {createAchieveTask, createStepUpTask} from '../models/Task'
 import client from '../util/http-client'
 import moment from 'moment'
 
+const TYPE_ACHIEVE = "ACHIEVE"
+const TYPE_AMOUNT = "AMOUNT"
+const TYPE_TIME = "TIME"
+
 export default {
     namespaced: true,
     state: {
@@ -44,7 +48,7 @@ export default {
     },
     actions: {
         async create({ state, dispatch }, task) {
-            const TASK_TYPE = new Map([[0, "ACHIEVE"], [1, "AMOUNT"], [2, "TIME"]])
+            const TASK_TYPE = new Map([[0, TYPE_ACHIEVE], [1, TYPE_AMOUNT], [2, TYPE_TIME]])
             const formData = new FormData()
             formData.append('title', task.title)
             formData.append('dueDate', task.dueDate)
@@ -62,9 +66,9 @@ export default {
                 }
             })
             const tasks = response.data.map(task => {
-                if (task.type === "AMOUNT") {
+                if (task.type === TYPE_AMOUNT) {
                     return createStepUpTask(task.id, task.title, task.dueDate, task.amount, task.progress)
-                } else if (task.type === "ACHIEVE") {
+                } else if (task.type === TYPE_ACHIEVE) {
                     return createAchieveTask(task.id, task.title, task.dueDate, task.achieved)
                 } else {
                     console.log("不正なタスクです")
