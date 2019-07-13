@@ -1,14 +1,14 @@
 <template>
     <v-app light>
       <v-toolbar color="green darken-2" dark app>
-        <v-toolbar-title>JOIN</v-toolbar-title>
+        <v-toolbar-title>Join</v-toolbar-title>
       </v-toolbar>
       <v-content>
         <v-layout mt-5>
           <v-flex xs12 sm6 offset-sm3>
             <v-card>
               <v-card-title primary-title>
-                <h1>Signin & Signup</h1>
+                <h1>Join</h1>
               </v-card-title>
               <v-card-text>
                 <v-form>
