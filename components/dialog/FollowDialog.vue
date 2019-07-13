@@ -5,7 +5,7 @@
             <span class="headline">ユーザー一覧</span>
           </v-card-title>
           <v-card-text>
-            <v-list>
+            <v-list style="max-height: 350px" class="scroll-y">
                 <v-list-tile
                     v-for="(user) in users"
                     :key="user.id"
