@@ -49,7 +49,7 @@
               </v-tab-item>
               <v-tab-item>
                 <v-card flat>
-                  <v-list>
+                  <v-list style="max-height: 350px" class="scroll-y">
                     <v-list-tile
                         v-for="followee in followees"
                         :key="followee.id"
@@ -64,19 +64,10 @@
                         </v-list-tile-action>
                     </v-list-tile>
                   </v-list>
-                  <v-card-text style="height: 100px; position: relative">
-                    <v-btn
-                      absolute
-                      dark
-                      fab
-                      bottom
-                      right
-                      style="background-color: #b5474c"
-                      @click="openFollowDialog()"
-                    >
-                      <v-icon>add</v-icon>
-                    </v-btn>
-                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer />
+                    <v-btn flat color="blue" @click="openFollowDialog()" style="font-weight: bold">Add</v-btn>
+                  </v-card-actions>
                 </v-card>
               </v-tab-item>
               <v-tab-item>
