@@ -1,81 +1,83 @@
 <template>
   <v-app light>
       <Header />
-      <v-content style="margin-left: auto;margin-right: auto">
+      <v-content style="margin: 20px 20px">
           <v-layout mt-5>
-            <v-tabs
-              color="cyan"
-              dark
-              slider-color="yellow"
-              @change="tabChanged"
-            >
-              <v-tab ripple>
-                  会員情報
-              </v-tab>
-              <v-tab ripple>
-                  フォローリスト
-              </v-tab>
-              <v-tab ripple>
-                  フォロワーリスト
-              </v-tab>
-              <v-tab-item>
-                <v-card flat>
-                  <v-card-text>
-                    <v-text-field
-                      label="メールアドレス"
-                      :readonly="isShow"
-                      v-model="accountForm.email"
-                    ></v-text-field>
-                    <v-text-field
-                      label="パスワード"
-                      :type="'password'"
-                      v-model="accountForm.password"
-                      :readonly="isShow"
-                      autocomplete="nope"
-                    ></v-text-field>
-                    <v-text-field
-                      label="ユーザー名"
-                      v-model="accountForm.userName"
-                      :readonly="isShow"
-                    ></v-text-field>
-                  </v-card-text>
-                  <v-card-actions>
-                      <v-btn v-show="! isShow" color="primary" flat @click="initializeAccountForm(); isShow = true">キャンセル</v-btn>
-                      <v-spacer></v-spacer>
-                      <v-btn v-show="isShow" color="primary" flat @click="isShow = false" right>編集</v-btn>
-                      <v-btn v-show="! isShow" color="primary" flat @click="updateAccount(accountForm); isShow = true" right>更新</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item>
-                <v-card flat>
-                  <v-list style="max-height: 350px" class="scroll-y">
-                    <v-list-tile
-                        v-for="followee in followees"
-                        :key="followee.id"
-                    >
-                        <v-list-tile-content>
-                            <v-list-tile-title v-text="followee.name"></v-list-tile-title>
-                        </v-list-tile-content>
-                        <v-list-tile-action>
-                          <v-btn icon ripple @click.stop="unfollow(followee.id)">
-                            <v-icon color="red lighten-1">delete</v-icon>
-                          </v-btn>
-                        </v-list-tile-action>
-                    </v-list-tile>
-                  </v-list>
-                  <v-card-actions>
-                    <v-spacer />
-                    <v-btn flat color="blue" @click="openFollowDialog()" style="font-weight: bold">Add</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-tab-item>
-              <v-tab-item>
-                <v-card flat>
-                  <v-card-text>ここにフォロワーリスト</v-card-text>
-                </v-card>
-              </v-tab-item>
-            </v-tabs>
+            <v-flex>
+              <v-tabs
+                color="cyan"
+                dark
+                slider-color="yellow"
+                @change="tabChanged"
+              >
+                <v-tab ripple>
+                    会員情報
+                </v-tab>
+                <v-tab ripple>
+                    フォローリスト
+                </v-tab>
+                <v-tab ripple>
+                    フォロワーリスト
+                </v-tab>
+                <v-tab-item>
+                  <v-card flat>
+                    <v-card-text>
+                      <v-text-field
+                        label="メールアドレス"
+                        :readonly="isShow"
+                        v-model="accountForm.email"
+                      ></v-text-field>
+                      <v-text-field
+                        label="パスワード"
+                        :type="'password'"
+                        v-model="accountForm.password"
+                        :readonly="isShow"
+                        autocomplete="nope"
+                      ></v-text-field>
+                      <v-text-field
+                        label="ユーザー名"
+                        v-model="accountForm.userName"
+                        :readonly="isShow"
+                      ></v-text-field>
+                    </v-card-text>
+                    <v-card-actions>
+                        <v-btn v-show="! isShow" color="primary" flat @click="initializeAccountForm(); isShow = true">キャンセル</v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn v-show="isShow" color="primary" flat @click="isShow = false" right>編集</v-btn>
+                        <v-btn v-show="! isShow" color="primary" flat @click="updateAccount(accountForm); isShow = true" right>更新</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-tab-item>
+                <v-tab-item>
+                  <v-card flat>
+                    <v-list style="max-height: 350px" class="scroll-y">
+                      <v-list-tile
+                          v-for="followee in followees"
+                          :key="followee.id"
+                      >
+                          <v-list-tile-content>
+                              <v-list-tile-title v-text="followee.name"></v-list-tile-title>
+                          </v-list-tile-content>
+                          <v-list-tile-action>
+                            <v-btn icon ripple @click.stop="unfollow(followee.id)">
+                              <v-icon color="red lighten-1">delete</v-icon>
+                            </v-btn>
+                          </v-list-tile-action>
+                      </v-list-tile>
+                    </v-list>
+                    <v-card-actions>
+                      <v-spacer />
+                      <v-btn flat color="blue" @click="openFollowDialog()" style="font-weight: bold">Add</v-btn>
+                    </v-card-actions>
+                  </v-card>
+                </v-tab-item>
+                <v-tab-item>
+                  <v-card flat>
+                    <v-card-text>ここにフォロワーリスト</v-card-text>
+                  </v-card>
+                </v-tab-item>
+              </v-tabs>
+            </v-flex>
           </v-layout>
       </v-content>
       <FollowDialog></FollowDialog>

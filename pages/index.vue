@@ -1,9 +1,9 @@
 <template>
     <v-app light>
       <Header />
-      <v-content>
+      <v-content style="margin: 20px 20px">
         <v-layout mt-5>
-          <v-flex xs12 sm6 offset-sm3>
+          <v-flex>
             <v-card>
               <v-card-title primary-title>
                 <h1>Join</h1>

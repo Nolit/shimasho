@@ -1,9 +1,9 @@
 <template>
   <v-app light>
       <Header />
-      <v-content style="margin-left: auto;margin-right: auto">
+      <v-content style="margin: 20px 20px">
           <v-layout row wrap mt-5>
-            <v-flex v-for="user in users" :key="user.id" style="min-width: 400px;">
+            <v-flex v-for="user in users" :key="user.id">
                 <v-card>
                 <h2>{{ user.name }}</h2>
                 <v-list>
