@@ -2,7 +2,7 @@
   <v-app light>
       <Header />
       <v-content style="margin: 20px 20px">
-          <v-layout row wrap mt-5>
+          <v-layout row wrap mt-1>
             <v-flex v-for="user in users" :key="user.id">
                 <v-card>
                 <h2>{{ user.name }}</h2>
