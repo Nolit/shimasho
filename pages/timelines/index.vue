@@ -30,9 +30,6 @@ import Footer from '../../components/Footer'
 import { mapMutations, mapState, mapActions, mapGetters   } from 'vuex'
 
 export default {
-  head: {
-    title: 'Timelines'
-  },
   mounted: function () {
     this.fetchList()
   },

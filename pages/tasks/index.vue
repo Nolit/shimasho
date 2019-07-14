@@ -61,9 +61,6 @@ import StepUpDialog from '../../components/dialog/StepUp.vue'
 import AchieveDialog from '../../components/dialog/AchieveDialog.vue'
 
 export default {
-  head: {
-    title: 'Tasks'
-  },
   mounted: function () {
     this.fetchNowDateTime()
     this.fetchList(this.date)

@@ -1,8 +1,6 @@
 <template>
     <v-app light>
-      <v-toolbar color="green darken-2" dark app>
-        <v-toolbar-title>Join</v-toolbar-title>
-      </v-toolbar>
+      <Header />
       <v-content>
         <v-layout mt-5>
           <v-flex xs12 sm6 offset-sm3>
@@ -42,11 +40,8 @@
 <script>
 import SignUpDialog from '../components/dialog/SignUpDialog'
 import { mapMutations, mapActions } from 'vuex'
-
+import Header from '../components/Header'
 export default {
-  head: {
-    title: 'Tasks'
-  },
   data: function () {
     return {
       passwordRule: [v => v.length >= 8 || 'Min 8 characters']
@@ -76,7 +71,8 @@ export default {
     },
   },
   components: {
-    SignUpDialog: SignUpDialog
+    SignUpDialog: SignUpDialog,
+    Header
   }
 }
 </script>

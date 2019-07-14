@@ -95,9 +95,6 @@ const FOLLOWEE_TAB_INDEX = 1;
 const FOLLOWER_TAB_INDEX = 2;
 
 export default {
-  head: {
-    title: 'Account'
-  },
   data: function () {
       return {
           accountForm: null,
