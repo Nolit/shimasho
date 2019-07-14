@@ -1,7 +1,7 @@
 <template>
     <v-toolbar style="background-color: black" dark app>
-        <v-toolbar-title @click="$router.push('/')">
-            <img width="150" height="50" src="~/assets/images/logo.png">
+        <v-toolbar-title>
+            <img @click="$router.push('/')" width="150" height="50" src="~/assets/images/logo.png" style="cursor: pointer;">
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
