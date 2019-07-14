@@ -4,7 +4,7 @@
       <v-content style="margin: 20px 20px">
           <v-layout>
             <v-flex>
-              <v-card style="min-width: 400px;">
+              <v-card>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <v-btn dark small style="background-color: #47b578" @click="prevDate()">
                     <v-icon dark>arrow_left</v-icon>
@@ -53,6 +53,12 @@
       <Footer></Footer>
   </v-app>
 </template>
+
+<style>
+  .v-btn {
+    min-width: 0;
+  }
+</style>
 
 <script>
 import Header from '../../components/Header'
