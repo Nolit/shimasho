@@ -1,7 +1,7 @@
 {
   "name": "torkoal",
   "version": "1.0.0",
-  "description": "My exquisite Nuxt.js project",
+  "description": "Shimasho タスク管理 × SNS",
   "author": "Nolit",
   "private": true,
   "scripts": {
