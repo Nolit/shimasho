@@ -3,7 +3,7 @@
       <Header />
       <v-content style="margin: 20px 20px">
           <v-layout row wrap mt-1>
-            <v-flex v-for="user in users" :key="user.id">
+            <v-flex v-for="user in users" :key="user.id" sm6 offset-sm3>
                 <v-card>
                 <h2>{{ user.name }}</h2>
                 <v-list>

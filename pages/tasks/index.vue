@@ -3,7 +3,7 @@
       <Header />
       <v-content style="margin: 20px 20px">
           <v-layout>
-            <v-flex>
+            <v-flex sm6 offset-sm3>
               <v-card>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                   <v-btn dark small style="background-color: #47b578" @click="prevDate()">
