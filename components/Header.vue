@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar style="background-color: #47b578" dark app>
+    <v-toolbar style="background-color: black" dark app>
         <v-toolbar-title @click="$router.push('/')">
             <img width="150" height="50" src="~/assets/images/logo.png">
         </v-toolbar-title>

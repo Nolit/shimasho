@@ -2,7 +2,7 @@
     <v-footer height="auto">
         <v-bottom-nav
             :active="navigation"
-            :color="color"
+            :color="'#333333'"
             :value="true"
             dark
             fixed
@@ -43,16 +43,6 @@ export default {
     data () {
         return {
             navigation: null
-        }
-    },
-    computed: {
-        color () {
-            switch (this.navigation) {
-                case 0: return 'blue-grey'
-                case 1: return 'teal'
-                case 2: return 'brown'
-                case 3: return 'indigo'
-            }
         }
     }
 }
