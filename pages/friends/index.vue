@@ -5,7 +5,7 @@
           <v-layout mt-1>
             <v-flex sm6 offset-sm3>
               <v-tabs
-                color="cyan"
+                color="#4682b4"
                 dark
                 slider-color="yellow"
                 @change="tabChanged"
