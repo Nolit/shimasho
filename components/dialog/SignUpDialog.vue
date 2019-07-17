@@ -4,26 +4,31 @@
           <v-card-title>
             <span class="headline">新規登録</span>
           </v-card-title>
-          <v-card-text>
-            <v-text-field
-              label="メールアドレス"
-              v-model="email"
-            ></v-text-field>
-            <v-text-field
-              label="パスワード"
-              :type="'password'"
-              v-model="password"
-            ></v-text-field>
-            <v-text-field
-              label="ユーザー名"
-              v-model="userName"
-            ></v-text-field>
-          </v-card-text>
-          <v-card-actions>
-            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="signUp()" right>登録</v-btn>
-          </v-card-actions>
+          <v-form v-model="formValid">
+            <v-card-text>
+              <v-text-field
+                label="メールアドレス"
+                v-model="email"
+                :rules="emailRules"
+              ></v-text-field>
+              <v-text-field
+                label="パスワード"
+                :type="'password'"
+                v-model="password"
+                :rules="passwordRules"
+              ></v-text-field>
+              <v-text-field
+                label="ユーザー名"
+                v-model="userName"
+                :rules="userNameRules"
+              ></v-text-field>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" flat @click="signUp()" :disabled="!formValid" right>登録</v-btn>
+            </v-card-actions>
+          </v-form>
         </v-card>
     </v-dialog>
 </template>
@@ -32,6 +37,22 @@
     import { mapMutations, mapState, mapActions  } from 'vuex'
 
     export default {
+        data() {
+          return {
+            emailRules: [
+              v => !!v || 'メールアドレスを入力してください',
+              v => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v) || 'メールアドレスの形式で入力してください'
+            ],
+            passwordRules: [
+              v => !!v || 'パスワードを入力してください',
+              v => v.length >= 8 || '8文字以上入力してください'
+            ],
+            userNameRules: [
+              v => !!v || 'ユーザ名を入力してください',
+            ],
+            formValid: true,
+          }
+        },
         computed: {
           ...mapState('auth', {
               isOpen: 'signUpDialog'

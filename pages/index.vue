@@ -9,24 +9,25 @@
                 <h1>Join</h1>
               </v-card-title>
               <v-card-text>
-                <v-form>
+                <v-form v-model="formValid">
                   <v-text-field
                     v-model="email"
-                    label="E-mail"
+                    label="メールアドレス"
                     required
+                    :rules="emailRules"
                   ></v-text-field>
                   <v-text-field
                     v-model="password"
-                    label="Password"
+                    label="パスワード"
                     required
                     :type="'password'"
-                    :rules="passwordRule"
+                    :rules="passwordRules"
                   ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="green" @click="signIn()">Join</v-btn>
+                <v-btn flat color="green" @click="signIn()" :disabled="!formValid">Join</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -44,13 +45,21 @@ import Header from '../components/Header'
 export default {
   data: function () {
     return {
-      passwordRule: [v => v.length >= 8 || 'Min 8 characters']
+      emailRules: [
+        v => !!v || 'メールアドレスを入力してください',
+        v => /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(v) || 'メールアドレスの形式で入力してください'
+      ],
+      passwordRules: [
+        v => !!v || 'パスワードを入力してください',
+        v => v.length >= 8 || '8文字以上入力してください'
+      ],
+      formValid: true,
     }
   },
   methods: {
     ...mapActions('auth', [
       'signIn'
-    ])
+    ]),
   },
   computed: {
     email: {
