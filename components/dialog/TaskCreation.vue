@@ -8,63 +8,67 @@
           </v-card-title>
           <v-card-text>
             <v-flex>
-              <v-text-field
-                label="タイトル"
-                v-model="form.title"
-              ></v-text-field>
-              <v-menu
-                ref="dueDateDialog"
-                :close-on-content-click="false"
-                v-model="dueDateDialog"
-                :nudge-right="40"
-                lazy
-                transition="scale-transition"
-                offset-y
-                full-width
-                max-width="290px"
-                min-width="290px"
-              >
+              <v-form v-model="formValid">
                 <v-text-field
-                  slot="activator"
-                  v-model="dueDateFormatted"
-                  label="実施日"
-                  persistent-hint
-                  prepend-icon="event"
+                  label="タイトル"
+                  v-model="form.title"
+                  :rules="titleRules"
                 ></v-text-field>
-                <v-date-picker v-model="form.dueDate" no-title @input="dueDateDialog = false"></v-date-picker>
-              </v-menu>
-              <br/>
-              <v-tabs fixed-tabs v-model="form.type">
-                <v-tab ripple>
-                  Achieve
-                </v-tab>
-                <v-tab ripple>
-                  StepUp
-                </v-tab>
-                <v-tab ripple :centered="true">
-                  Timer
-                </v-tab>
-                <v-tab-item :transition="false">
-                  達成したかどうかのみを記録します
-                </v-tab-item>
-                <v-tab-item :transition="false">
-                  目標到達までの数字を記録します
+                <v-menu
+                  ref="dueDateDialog"
+                  :close-on-content-click="false"
+                  v-model="dueDateDialog"
+                  :nudge-right="40"
+                  lazy
+                  transition="scale-transition"
+                  offset-y
+                  full-width
+                  max-width="290px"
+                  min-width="290px"
+                >
                   <v-text-field
-                    label="目標数"
-                    type="number"
-                    v-model.number="form.amount"
+                    slot="activator"
+                    v-model="dueDateFormatted"
+                    label="実施日"
+                    persistent-hint
+                    prepend-icon="event"
+                    :rules="dueDateRules"
                   ></v-text-field>
-                </v-tab-item>
-                <v-tab-item :transition="false">
-                  時間型のタスクは未実装です
-                </v-tab-item>
-              </v-tabs>
+                  <v-date-picker v-model="form.dueDate" no-title @input="dueDateDialog = false"></v-date-picker>
+                </v-menu>
+                <br/>
+                <v-tabs fixed-tabs v-model="form.type">
+                  <v-tab ripple>
+                    Achieve
+                  </v-tab>
+                  <v-tab ripple>
+                    StepUp
+                  </v-tab>
+                  <v-tab ripple :centered="true">
+                    Timer
+                  </v-tab>
+                  <v-tab-item :transition="false">
+                    達成したかどうかのみを記録します
+                  </v-tab-item>
+                  <v-tab-item :transition="false">
+                    目標到達までの数字を記録します
+                    <v-text-field
+                      label="目標数"
+                      type="number"
+                      v-model.number="form.amount"
+                    ></v-text-field>
+                  </v-tab-item>
+                  <v-tab-item :transition="false">
+                    時間型のタスクは未実装です
+                  </v-tab-item>
+                </v-tabs>
+              </v-form>
             </v-flex>
           </v-card-text>
           <v-card-actions>
             <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="create(form);close()" right>作成</v-btn>
+            <v-btn color="primary" flat @click="create(form);close()" :disabled="!formValid" right>作成</v-btn>
           </v-card-actions>
         </v-card>
     </v-dialog>
@@ -78,6 +82,13 @@ export default {
         return {
             form: null,
             dueDateDialog: false,
+            formValid: true,
+            titleRules: [
+              v => !!v || 'タイトルを入力してください',
+            ],
+            dueDateRules: [
+              v => !!v || '実施日を入力してください',
+            ],
         }
     },
     created: function () {
@@ -107,7 +118,10 @@ export default {
         },
         ...mapState('task', {
             isOpen: 'creationDialog'
-        })
+        }),
+        isStepUp () {
+          return this.form.type === 1
+        }
     },
     watch: {
       isOpen(isOpen) {
