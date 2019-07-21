@@ -6,7 +6,7 @@
           <v-flex sm6 offset-sm3>
             <v-card>
               <v-card-title primary-title>
-                <h1>Join</h1>
+                <h1 style="color: #4682b4; font-size: 40px">参加しましょう</h1>
               </v-card-title>
               <v-card-text>
                 <v-form v-model="formValid">
@@ -27,7 +27,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="green" @click="signIn()" :disabled="!formValid">Join</v-btn>
+                <v-btn flat color="#4682b4" @click="signIn()" :disabled="!formValid">参加</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
