@@ -9,7 +9,17 @@
                   <v-btn dark small style="background-color: #47b578" @click="prevDate()">
                     <v-icon dark>arrow_left</v-icon>
                   </v-btn>
-                  <span style="font-size: 18px;">{{ dateFormatted }}</span>
+                  <v-menu
+                    :nudge-right="40"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    min-width="290px"
+                  >
+                    <v-btn flat slot="activator">{{ dateFormatted }}</v-btn>
+                    <v-date-picker @input="selectDate" color="blue" no-title></v-date-picker>
+                  </v-menu>
                   <v-btn dark small style="background-color: #47b578" @click="nextDate()">
                     <v-icon dark>arrow_right</v-icon>
                   </v-btn>
@@ -76,6 +86,7 @@ export default {
   methods: {
     ...mapMutations('task', [
       'openCreationDialog',
+      'setDate',
     ]),
     ...mapActions ('task', {
       fetchList: 'fetchList',
@@ -88,6 +99,10 @@ export default {
       this.$store.dispatch('task/remove', id).then(response => {
         this.$toasted.success("削除しました")
       })
+    },
+    selectDate(date) {
+      this.setDate(date)
+      this.fetchList(this.date)
     }
   },
   computed: {
