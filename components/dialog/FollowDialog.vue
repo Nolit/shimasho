@@ -6,19 +6,19 @@
           </v-card-title>
           <v-card-text>
             <v-list style="max-height: 350px" class="scroll-y">
-                <v-list-tile
+                <v-list-item
                     v-for="(user) in users"
                     :key="user.id"
                     @click="follow(user)"
                 >
-                    <v-list-tile-content>
-                        <v-list-tile-title v-text="user.name"></v-list-tile-title>
-                    </v-list-tile-content>
-                </v-list-tile>
+                    <v-list-item-content>
+                        <v-list-item-title v-text="user.name"></v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+            <v-btn color="primary" text @click="close()">キャンセル</v-btn>
           </v-card-actions>
         </v-card>
     </v-dialog>

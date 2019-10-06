@@ -27,7 +27,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn flat color="#4682b4" @click="signIn()" :disabled="!formValid">参加</v-btn>
+                <v-btn text color="#4682b4" @click="signIn()" :disabled="!formValid">参加</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>

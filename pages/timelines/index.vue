@@ -7,14 +7,14 @@
                 <v-card>
                 <h2>{{ user.name }}</h2>
                 <v-list>
-                    <v-list-tile
+                    <v-list-item
                     v-for="timeline in user.timelines"
                     :key="timeline.id"
                     >
-                    <v-list-tile-content>
-                        <v-list-tile-title>({{timeline.time}})&nbsp;&nbsp;&nbsp;{{ timeline.message }}</v-list-tile-title>
-                    </v-list-tile-content>
-                    </v-list-tile>
+                    <v-list-item-content>
+                        <v-list-item-title>({{timeline.time}})&nbsp;&nbsp;&nbsp;{{ timeline.message }}</v-list-item-title>
+                    </v-list-item-content>
+                    </v-list-item>
                 </v-list>
                 </v-card>
             </v-flex>

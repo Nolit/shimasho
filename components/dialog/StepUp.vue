@@ -13,9 +13,9 @@
             ></v-text-field>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+            <v-btn color="primary" text @click="close()">キャンセル</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="progress(additionalProgressCount)" right>ステップアップ</v-btn>
+            <v-btn color="primary" text @click="progress(additionalProgressCount)" right>ステップアップ</v-btn>
           </v-card-actions>
         </v-card>
     </v-dialog>

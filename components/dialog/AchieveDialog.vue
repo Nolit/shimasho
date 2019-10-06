@@ -5,9 +5,9 @@
             <span class="headline">{{ task.title}}</span>
           </v-card-title>
           <v-card-actions>
-            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+            <v-btn color="primary" text @click="close()">キャンセル</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="achieve()" right>達成</v-btn>
+            <v-btn color="primary" text @click="achieve()" right>達成</v-btn>
           </v-card-actions>
         </v-card>
     </v-dialog>

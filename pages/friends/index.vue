@@ -5,7 +5,7 @@
           <v-layout mt-1>
             <v-flex sm6 offset-sm3>
               <v-tabs
-                color="#4682b4"
+                background-color="#4682b4"
                 dark
                 slider-color="yellow"
                 @change="tabChanged"
@@ -41,33 +41,33 @@
                       ></v-text-field>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn v-show="! isShow" color="primary" flat @click="initializeAccountForm(); isShow = true">キャンセル</v-btn>
+                        <v-btn v-show="! isShow" color="primary" text @click="initializeAccountForm(); isShow = true">キャンセル</v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn v-show="isShow" color="primary" flat @click="isShow = false" right>編集</v-btn>
-                        <v-btn v-show="! isShow" color="primary" flat @click="updateAccount(accountForm); isShow = true" right>更新</v-btn>
+                        <v-btn v-show="isShow" color="primary" text @click="isShow = false" right>編集</v-btn>
+                        <v-btn v-show="! isShow" color="primary" text @click="updateAccount(accountForm); isShow = true" right>更新</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-tab-item>
                 <v-tab-item>
                   <v-card flat>
                     <v-list style="max-height: 350px" class="scroll-y">
-                      <v-list-tile
+                      <v-list-item
                           v-for="followee in followees"
                           :key="followee.id"
                       >
-                          <v-list-tile-content>
-                              <v-list-tile-title v-text="followee.name"></v-list-tile-title>
-                          </v-list-tile-content>
-                          <v-list-tile-action>
+                          <v-list-item-content>
+                              <v-list-item-title v-text="followee.name"></v-list-item-title>
+                          </v-list-item-content>
+                          <v-list-item-action>
                             <v-btn icon ripple @click.stop="unfollow(followee.id)">
                               <v-icon color="red lighten-1">delete</v-icon>
                             </v-btn>
-                          </v-list-tile-action>
-                      </v-list-tile>
+                          </v-list-item-action>
+                      </v-list-item>
                     </v-list>
                     <v-card-actions>
                       <v-spacer />
-                      <v-btn flat color="blue" @click="openFollowDialog()" style="font-weight: bold">Add</v-btn>
+                      <v-btn text color="blue" @click="openFollowDialog()" style="font-weight: bold">Add</v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-tab-item>

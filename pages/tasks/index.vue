@@ -11,13 +11,13 @@
                   </v-btn>
                   <v-menu
                     :nudge-right="40"
-                    lazy
                     transition="scale-transition"
                     offset-y
-                    full-width
                     min-width="290px"
                   >
-                    <v-btn flat slot="activator">{{ dateFormatted }}</v-btn>
+                    <template #activator="activator">
+                      <v-btn text v-on="activator.on">{{ dateFormatted }}</v-btn>
+                    </template>
                     <v-date-picker @input="selectDate" color="blue" no-title></v-date-picker>
                   </v-menu>
                   <v-btn dark small style="background-color: #47b578" @click="nextDate()">
@@ -28,30 +28,30 @@
                   <v-toolbar-title style="font-weight: bold;">タスク</v-toolbar-title>
                 </v-toolbar>
                 <v-list style="max-height: 350px" class="scroll-y">
-                  <v-list-tile
+                  <v-list-item
                     v-for="(task, key) in tasks"
                     :key="task.id"
                     @click="openTaskDialog(key)"
                   >
-                    <v-list-tile-avatar>
+                    <v-list-item-avatar>
                       <span v-if="task.isAchieved()" style="font-weight: bold; color: rgb(181, 71, 76)">達成</span>
-                    </v-list-tile-avatar>
-                    <v-list-tile-content>
-                      <v-list-tile-title v-text="task.title"></v-list-tile-title>
+                    </v-list-item-avatar>
+                    <v-list-item-content>
+                      <v-list-item-title v-text="task.title"></v-list-item-title>
                       <template v-if="task.isStepUp()">
-                        <v-list-tile-sub-title>{{ task.progress }}/{{ task.amount }}</v-list-tile-sub-title>                      
+                        <v-list-item-sub-title>{{ task.progress }}/{{ task.amount }}</v-list-item-sub-title>                      
                       </template>
-                    </v-list-tile-content>
-                    <v-list-tile-action>
+                    </v-list-item-content>
+                    <v-list-item-action>
                       <v-btn icon ripple @click.stop="remove(task.id)">
                         <v-icon color="red lighten-1">delete</v-icon>
                       </v-btn>
-                    </v-list-tile-action>
-                  </v-list-tile>
+                    </v-list-item-action>
+                  </v-list-item>
                 </v-list>
                 <v-card-actions>
                   <v-spacer />
-                  <v-btn flat color="blue" @click="openCreationDialog()" style="font-weight: bold">Add</v-btn>
+                  <v-btn text color="blue" @click="openCreationDialog()" style="font-weight: bold">Add</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>

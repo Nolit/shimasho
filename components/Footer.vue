@@ -1,7 +1,7 @@
 <template>
     <v-footer height="auto">
-        <v-bottom-nav
-            :active="navigation"
+        <v-bottom-navigation
+            v-model="navigation"
             :color="'#333333'"
             :value="true"
             dark
@@ -21,7 +21,7 @@
                 <span>Friend</span>
                 <v-icon>group</v-icon>
             </v-btn>
-        </v-bottom-nav>
+        </v-bottom-navigation>
     </v-footer>
 </template>
 

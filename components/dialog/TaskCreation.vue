@@ -2,9 +2,9 @@
     <v-dialog v-model="isOpen" max-width="500px" persistent>
         <v-card>
           <v-card-title primary-title>
-              <h1>
+              <h3>
                 タスク作成
-              </h1>
+              </h3>
           </v-card-title>
           <v-card-text>
             <v-flex>
@@ -19,21 +19,21 @@
                   :close-on-content-click="false"
                   v-model="dueDateDialog"
                   :nudge-right="40"
-                  lazy
                   transition="scale-transition"
                   offset-y
-                  full-width
                   max-width="290px"
                   min-width="290px"
                 >
-                  <v-text-field
-                    slot="activator"
-                    v-model="dueDateFormatted"
-                    label="実施日"
-                    persistent-hint
-                    prepend-icon="event"
-                    :rules="dueDateRules"
-                  ></v-text-field>
+                  <template #activator="activator">
+                    <v-text-field
+                      v-on="activator.on"
+                      v-model="dueDateFormatted"
+                      label="実施日"
+                      persistent-hint
+                      prepend-icon="event"
+                      :rules="dueDateRules"
+                    ></v-text-field>
+                  </template>
                   <v-date-picker v-model="form.dueDate" no-title @input="dueDateDialog = false"></v-date-picker>
                 </v-menu>
                 <br/>
@@ -66,9 +66,9 @@
             </v-flex>
           </v-card-text>
           <v-card-actions>
-            <v-btn color="primary" flat @click="close()">キャンセル</v-btn>
+            <v-btn color="primary" text @click="close()">キャンセル</v-btn>
             <v-spacer></v-spacer>
-            <v-btn color="primary" flat @click="create(form);close()" :disabled="!formValid" right>作成</v-btn>
+            <v-btn color="primary" text @click="create(form);close()" :disabled="!formValid" right>作成</v-btn>
           </v-card-actions>
         </v-card>
     </v-dialog>
